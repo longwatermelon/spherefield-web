@@ -181,7 +181,7 @@ bool prog_mainloop(struct Prog *p)
 
         {
             char s[20] = { 0 };
-            sprintf(s, "Time: %.1fs", score);
+            sprintf(s, "Score: %.1f", p->speed * 1e4f - 100.f);
             SDL_Texture *score_tex = util_render_text(p->rend, p->font, s, (SDL_Color){ 255, 255, 255 });
             SDL_Rect r = { 10, 20 };
             SDL_QueryTexture(score_tex, 0, 0, &r.w, &r.h);
@@ -191,7 +191,7 @@ bool prog_mainloop(struct Prog *p)
 
         if (p->dead)
         {
-            p->speed = .01f;
+            /* p->speed = .01f; */
             SDL_SetRenderDrawBlendMode(p->rend, SDL_BLENDMODE_BLEND);
             SDL_SetRenderDrawColor(p->rend, 0, 0, 0, 150);
             SDL_RenderFillRect(p->rend, 0);
